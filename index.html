@@ -154,6 +154,14 @@
                     ##################################################
 
                     def get_np_conditions_vector():
+                        # Load scaler parameters from JSON file
+                        with open(scaler_params_path, 'r') as f:
+                            scaling_params = json.load(f)
+    
+                        # Extract min and max values from scaling_params
+                        min_values = scaling_params['min_values']
+                        max_values = scaling_params['max_values']
+                    
                         # Dictionary for encoding categorical inputs
                         orientation_map = {'left': 0, 'right': 1}
                         vehicle_map = {'car': 0, 'truck': 1, 'van': 2}
@@ -170,6 +178,9 @@
                         c5 = wheel_size_map.get(Element('testInput5').element.value.lower(), 0)
                         c6 = ride_height_map.get(Element('testInput6').element.value.lower(), 0)
                         c7 = windows_map.get(Element('testInput7').element.value.lower(), 0)
+    
+                        # Scale the numerical inputs using the loaded scaler parameters
+                        c2 = (c2 - min_values[1]) / (max_values[1] - min_values[1])
 
                         conditions_list = [c1, c2, c3, c4, c5, c6, c7]
                         np_conditions_list = np.array(conditions_list)
