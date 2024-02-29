@@ -39,25 +39,25 @@
      <td> <input type="text" style="border:3px solid #F7730E;" value="0" id="testInput1"/> </td>
 
        <td> Color (0-15) </td>
-     <td>   <input type="text" style="border:3px solid #F7730E;" value="175" id="testInput2"/> </td>
+     <td>   <input type="text" style="border:3px solid #F7730E;" value="0" id="testInput2"/> </td>
 
-       <td> Vehicle Type (Car, Truck, Van) </td>
-     <td>  <input type="text" style="border:3px solid #F7730E;" value="0" id="testInput3"/> </td>
+       <td> Vehicle Type (car, truck, van) </td>
+     <td>  <input type="text" style="border:3px solid #F7730E;" value="van" id="testInput3"/> </td>
 
-       <td> Configuration (2-door, 4-door, convertible) </td>
-     <td>   <input type="text" style="border:3px solid #F7730E;" value="0" id="testInput4"/> </td>
+       <td> Configuration (2-door, 4-door, convertible, sliding) </td>
+     <td>   <input type="text" style="border:3px solid #F7730E;" value="2-door" id="testInput4"/> </td>
   </tr>
         
        
   <tr>
-     <td> Wheel size (small, average, above average) </td>
-     <td>  <input type="text" style="border:3px solid #F7730E;" value="24" id="testInput5"/> </td>
+     <td> Wheel size (small, average, above) </td>
+     <td>  <input type="text" style="border:3px solid #F7730E;" value="above" id="testInput5"/> </td>
 
      <td> Ride Height (lowered, stock, lifted) </td>
-     <td>    <input type="text" style="border:3px solid #F7730E;" value="7" id="testInput6"/> </td>
+     <td>    <input type="text" style="border:3px solid #F7730E;" value="lowered" id="testInput6"/> </td>
 
      <td> Window tint (none, tint) </td>
-     <td>     <input type="text" style="border:3px solid #F7730E;" value="1459" id="testInput7"/> </td>
+     <td>     <input type="text" style="border:3px solid #F7730E;" value="tint" id="testInput7"/> </td>
   </tr> 
  
  </table> 
@@ -106,22 +106,22 @@
                     ###########################################
 
 
-                    url1 = ("https://github.com/ksmart1/MachineLearning/blob/0f7a42b6df4575b11918e6038b85cb6a40c5277c/vic_ids_train.csv")
+                    url1 = ("https://raw.githubusercontent.com/ksmart1/MachineLearning/main/vic_ids_train.csv")
                     vic_ids_train = pd.read_csv(open_url(url1))
                     vic_ids_train_np = vic_ids_train.to_numpy()
 
-                    url2 = ("https://rcalix1.github.io/ProbabilityDensityFunctionsFromNeuralNets/experiments/2023/july2023/GANs/PyScriptExamples/example3/PD_conditions_train.csv")
+                    url2 = ("https://raw.githubusercontent.com/ksmart1/MachineLearning/main/vic_conditions_train.csv")
                     vic_conditions_train = pd.read_csv(open_url(url2))
                     vic_conditions_train_np = vic_conditions_train.to_numpy()
 
                     #########################################################################################################
 
-                    url__1 = ("https://github.com/ksmart1/MachineLearning/blob/0f7a42b6df4575b11918e6038b85cb6a40c5277c/images_dataset_chunk_1.csv")
-                    url__2 = ("https://github.com/ksmart1/MachineLearning/blob/0f7a42b6df4575b11918e6038b85cb6a40c5277c/images_dataset_chunk_2.csv")
-                    url__3 = ("https://github.com/ksmart1/MachineLearning/blob/0f7a42b6df4575b11918e6038b85cb6a40c5277c/images_dataset_chunk_3.csv")
-                    url__4 = ("https://github.com/ksmart1/MachineLearning/blob/0f7a42b6df4575b11918e6038b85cb6a40c5277c/images_dataset_chunk_4.csv")
-                    url__5 = ("https://github.com/ksmart1/MachineLearning/blob/0f7a42b6df4575b11918e6038b85cb6a40c5277c/images_dataset_chunk_5.csv")
-                    url__6 = ("https://github.com/ksmart1/MachineLearning/blob/0f7a42b6df4575b11918e6038b85cb6a40c5277c/images_dataset_chunk_6.csv")
+                    url__1 = ("https://raw.githubusercontent.com/ksmart1/MachineLearning/main/images_dataset_chunk_1.csv")
+                    url__2 = ("https://raw.githubusercontent.com/ksmart1/MachineLearning/main/images_dataset_chunk_2.csv")
+                    url__3 = ("hhttps://raw.githubusercontent.com/ksmart1/MachineLearning/main/images_dataset_chunk_3.csv")
+                    url__4 = ("https://raw.githubusercontent.com/ksmart1/MachineLearning/main/images_dataset_chunk_4.csv")
+                    url__5 = ("hhttps://raw.githubusercontent.com/ksmart1/MachineLearning/main/images_dataset_chunk_5.csv")
+                    url__6 = ("https://raw.githubusercontent.com/ksmart1/MachineLearning/main/images_dataset_chunk_6.csv")
                     urls = [url__1, url__2, url__3, url__4, url__5, url__6]
                     for i in range(6):
                         images_np_train = pd.read_csv(open_url(urls))
