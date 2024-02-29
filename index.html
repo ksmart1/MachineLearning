@@ -35,38 +35,29 @@
  <table>
  
   <tr>
-     <td> Ng </td>
+     <td> Orientation (left/right) </td>
      <td> <input type="text" style="border:3px solid #F7730E;" value="0" id="testInput1"/> </td>
 
-       <td> Pci </td>
+       <td> Color (0-15) </td>
      <td>   <input type="text" style="border:3px solid #F7730E;" value="175" id="testInput2"/> </td>
 
-       <td> H </td>
+       <td> Vehicle Type (Car, Truck, Van) </td>
      <td>  <input type="text" style="border:3px solid #F7730E;" value="0" id="testInput3"/> </td>
 
-       <td> Wp </td>
+       <td> Configuration (2-door, 4-door, convertible) </td>
      <td>   <input type="text" style="border:3px solid #F7730E;" value="0" id="testInput4"/> </td>
-
-       <td> Ph</td>
-     <td>       <input type="text" style="border:3px solid #F7730E;" value="300" id="testInput5"/>  </td>
   </tr>
         
        
   <tr>
-     <td> Ox </td>
-     <td>  <input type="text" style="border:3px solid #F7730E;" value="24" id="testInput6"/> </td>
+     <td> Wheel size (small, average, above average) </td>
+     <td>  <input type="text" style="border:3px solid #F7730E;" value="24" id="testInput5"/> </td>
 
-     <td>Ow</td>
-     <td>    <input type="text" style="border:3px solid #F7730E;" value="7" id="testInput7"/> </td>
+     <td> Ride Height (lowered, stock, lifted) </td>
+     <td>    <input type="text" style="border:3px solid #F7730E;" value="7" id="testInput6"/> </td>
 
-     <td> Hbt</td>
-     <td>     <input type="text" style="border:3px solid #F7730E;" value="1459" id="testInput8"/> </td>
-
-     <td> Wm</td>
-     <td>  <input type="text" style="border:3px solid #F7730E;" value="12" id="testInput9"/> </td>
-
-    <td> Wr</td>
-     <td>     <input type="text" style="border:3px solid #F7730E;" value="308750" id="testInput10"/>  </td>
+     <td> Window tint (none, tint) </td>
+     <td>     <input type="text" style="border:3px solid #F7730E;" value="1459" id="testInput7"/> </td>
   </tr> 
  
  </table> 
@@ -115,23 +106,31 @@
                     ###########################################
 
 
-                    url1 = ("https://rcalix1.github.io/ProbabilityDensityFunctionsFromNeuralNets/experiments/2023/july2023/GANs/PyScriptExamples/example3/PD_ids_train.csv")
-                    pd_ids_train = pd.read_csv(open_url(url1))
-                    pd_ids_train_np = pd_ids_train.to_numpy()
-                    pd_ids_train_np          = pd_ids_train_np[1:, 1:]
+                    url1 = ("https://github.com/ksmart1/MachineLearning/blob/0f7a42b6df4575b11918e6038b85cb6a40c5277c/vic_ids_train.csv")
+                    vic_ids_train = pd.read_csv(open_url(url1))
+                    vic_ids_train_np = vic_ids_train.to_numpy()
 
                     url2 = ("https://rcalix1.github.io/ProbabilityDensityFunctionsFromNeuralNets/experiments/2023/july2023/GANs/PyScriptExamples/example3/PD_conditions_train.csv")
-                    pd_conditions_train = pd.read_csv(open_url(url2))
-                    pd_conditions_train_np = pd_conditions_train.to_numpy()
-                    pd_conditions_train_np   = pd_conditions_train_np[1:, 1:]
+                    vic_conditions_train = pd.read_csv(open_url(url2))
+                    vic_conditions_train_np = vic_conditions_train.to_numpy()
 
                     #########################################################################################################
 
-                    url3 = ("https://rcalix1.github.io/ProbabilityDensityFunctionsFromNeuralNets/experiments/2023/july2023/GANs/PyScriptExamples/example3/PD_imgs_np_train.csv")
-                    pd_imgs_np_train = pd.read_csv(open_url(url3))
-                    pd_imgs_np_train_np = pd_imgs_np_train.to_numpy()
-                    pd_imgs_np_train_np      = pd_imgs_np_train_np[1:, 1:]
+                    url__1 = ("https://github.com/ksmart1/MachineLearning/blob/0f7a42b6df4575b11918e6038b85cb6a40c5277c/images_dataset_chunk_1.csv")
+                    url__2 = ("https://github.com/ksmart1/MachineLearning/blob/0f7a42b6df4575b11918e6038b85cb6a40c5277c/images_dataset_chunk_2.csv")
+                    url__3 = ("https://github.com/ksmart1/MachineLearning/blob/0f7a42b6df4575b11918e6038b85cb6a40c5277c/images_dataset_chunk_3.csv")
+                    url__4 = ("https://github.com/ksmart1/MachineLearning/blob/0f7a42b6df4575b11918e6038b85cb6a40c5277c/images_dataset_chunk_4.csv")
+                    url__5 = ("https://github.com/ksmart1/MachineLearning/blob/0f7a42b6df4575b11918e6038b85cb6a40c5277c/images_dataset_chunk_5.csv")
+                    url__6 = ("https://github.com/ksmart1/MachineLearning/blob/0f7a42b6df4575b11918e6038b85cb6a40c5277c/images_dataset_chunk_6.csv")
+                    urls = [url__1, url__2, url__3, url__4, url__5, url__6]
+                    for i in range(6):
+                        images_np_train = pd.read_csv(open_url(urls))
+                        df_chunk = pd.read_csv(filename, header=0)
+                        df_chunk = df_chunk
+                        image_datasets.append(df_chunk)
 
+                    images_np_train = pd.concat(image_datasets)
+                    images_np_train = images_np_train.to_numpy()
             
                     ######################################################
 
@@ -143,30 +142,36 @@
 
                     def predict(test_x):
                     
-                        distances = [ euclidean_distance(test_x, x )  for x in pd_conditions_train_np    ]
+                        distances = [euclidean_distance(test_x, x) for x in vic_conditions_train_np]
                         k = 3
                         k_neighbor_indices = np.argsort(distances)[:k]
-                        selected_imgs_to_avg = [ pd_imgs_np_train_np[i].reshape((140, 39))  for i in k_neighbor_indices  ]
+                        selected_imgs_to_avg = [images_np_train[i].reshape((350, 200)) for i in k_neighbor_indices]
                     
-                        avg_gen_img = np.mean( np.array(selected_imgs_to_avg), axis=0 )
+                        avg_gen_img = np.mean(np.array(selected_imgs_to_avg), axis=0)
                         avg_gen_img = avg_gen_img.astype(int)
                         return avg_gen_img
 
                     ##################################################
 
                     def get_np_conditions_vector():
-                        c1 = float( Element('testInput1').element.value )
-                        c2 = float( Element('testInput2').element.value )
-                        c3 = float( Element('testInput3').element.value )
-                        c4 = float( Element('testInput4').element.value )
-                        c5 = float( Element('testInput5').element.value )
-                        c6 = float( Element('testInput6').element.value )
-                        c7 = float( Element('testInput7').element.value )
-                        c8 = float( Element('testInput8').element.value )
-                        c9 = float( Element('testInput9').element.value )
-                        c10 = float( Element('testInput10').element.value )
+                        # Dictionary for encoding categorical inputs
+                        orientation_map = {'left': 0, 'right': 1}
+                        vehicle_map = {'car': 0, 'truck': 1, 'van': 2}
+                        configuration_map = {'2-door': 0, '4-door': 1, 'convertible': 2}
+                        wheel_size_map = {'small': 0, 'average': 1, 'above average': 2}
+                        ride_height_map = {'lowered': 0, 'stock': 1, 'lifted': 2}
+                        windows_map = {'none': 0, 'tint': 1}
 
-                        conditions_list = [c1, c2, c3, c4, c5, c6, c7, c8, c9, c10]
+                        # Processing user input
+                        c1 = orientation_map.get(Element('testInput1').element.value.lower(), 0)
+                        c2 = float(Element('testInput2').element.value)  # Assuming color is already numerical
+                        c3 = vehicle_map.get(Element('testInput3').element.value.lower(), 0)
+                        c4 = configuration_map.get(Element('testInput4').element.value.lower(), 0)
+                        c5 = wheel_size_map.get(Element('testInput5').element.value.lower(), 0)
+                        c6 = ride_height_map.get(Element('testInput6').element.value.lower(), 0)
+                        c7 = windows_map.get(Element('testInput7').element.value.lower(), 0)
+
+                        conditions_list = [c1, c2, c3, c4, c5, c6, c7]
                         np_conditions_list = np.array(conditions_list)
                         np_conditions_list = np.expand_dims(np_conditions_list, axis=0)
 
@@ -179,9 +184,9 @@
                         test_x = get_np_conditions_vector()
 
                         #####################################################
-                        text1 = str(pd_conditions_train_np.shape)
-                        text2 = str(pd_ids_train_np.shape)
-                        text3 = str(pd_imgs_np_train_np.shape)
+                        text1 = str(vic_conditions_train_np.shape)
+                        text2 = str(vic_ids_train_np.shape)
+                        text3 = str(images_np_train.shape)
                         text4 = str(test_x.shape)
                         text = text1 + text2 + text3 + text4
                         Element('test-output').element.innerText =  text   
