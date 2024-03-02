@@ -3,7 +3,7 @@
 
     
     <head>
-        <title>Generate Furnace Heat Images per Conditions</title>
+        <title>Generate one-of-a-kind Vehicles</title>
         <meta charset="utf-8" />
         <link rel="icon" type="image/x-icon" href="./favicon.png" />
         <link
@@ -105,25 +105,25 @@
                     ###########################################
 
 
-                    url1 = ("https://raw.githubusercontent.com/ksmart1/MachineLearning/main/vic_ids_train.csv")
-                    vic_ids_train = pd.read_csv(open_url(url1))
+                    ###url1 = ("https://raw.githubusercontent.com/ksmart1/MachineLearning/main/vic_ids_train.csv")
+                    vic_ids_train = pd.read_csv("vic_ids_train.csv")
                     vic_ids_train_np = vic_ids_train.to_numpy()
 
-                    url2 = ("https://raw.githubusercontent.com/ksmart1/MachineLearning/main/vic_conditions_train.csv")
-                    vic_conditions_train = pd.read_csv(open_url(url2))
+                    ####url2 = ("https://raw.githubusercontent.com/ksmart1/MachineLearning/main/vic_conditions_train.csv")
+                    vic_conditions_train = pd.read_csv(vic_conditions_train.csv")
                     vic_conditions_train_np = vic_conditions_train.to_numpy()
 
                     #########################################################################################################
 
-                    url__1 = ("https://raw.githubusercontent.com/ksmart1/MachineLearning/main/images_dataset_chunk_1.csv")
-                    url__2 = ("https://raw.githubusercontent.com/ksmart1/MachineLearning/main/images_dataset_chunk_2.csv")
-                    url__3 = ("https://raw.githubusercontent.com/ksmart1/MachineLearning/main/images_dataset_chunk_3.csv")
-                    url__4 = ("https://raw.githubusercontent.com/ksmart1/MachineLearning/main/images_dataset_chunk_4.csv")
-                    url__5 = ("https://raw.githubusercontent.com/ksmart1/MachineLearning/main/images_dataset_chunk_5.csv")
-                    url__6 = ("https://raw.githubusercontent.com/ksmart1/MachineLearning/main/images_dataset_chunk_6.csv")
-                    urls = [url__1, url__2, url__3, url__4, url__5, url__6]
-                    for i in range(6):
-                        images_np_train = pd.read_csv(open_url(urls))
+                    ##url__1 = ("https://raw.githubusercontent.com/ksmart1/MachineLearning/main/images_dataset_chunk_1.csv")
+                    ##url__2 = ("https://raw.githubusercontent.com/ksmart1/MachineLearning/main/images_dataset_chunk_2.csv")
+                    ##url__3 = ("https://raw.githubusercontent.com/ksmart1/MachineLearning/main/images_dataset_chunk_3.csv")
+                    ##url__4 = ("https://raw.githubusercontent.com/ksmart1/MachineLearning/main/images_dataset_chunk_4.csv")
+                    ##url__5 = ("https://raw.githubusercontent.com/ksmart1/MachineLearning/main/images_dataset_chunk_5.csv")
+                    ##url__6 = ("https://raw.githubusercontent.com/ksmart1/MachineLearning/main/images_dataset_chunk_6.csv")
+                    ##urls = [url__1, url__2, url__3, url__4, url__5, url__6]
+                    for i in range(1,7):
+                        images_np_train = pd.read_csv("inages_dataset_chunk_{i}.csv)
                         df_chunk = pd.read_csv(filename, header=0)
                         df_chunk = df_chunk
                         image_datasets.append(df_chunk)
