@@ -155,7 +155,8 @@
                     def get_np_conditions_vector():
                         # Load scaler parameters from JSON file
                         scaler_params_url = "https://raw.githubusercontent.com/ksmart1/MachineLearning/main/scaling_params.json"
-                        scaling_params_data = open_url(scaler_params_url).text
+                        scaling_params_response = open_url(scaler_params_url)
+                        scaling_params_data = scaling_params_response.read()
                         scaling_params = json.loads(scaling_params_data)
                     
                         # Extract min and max values from scaling_params
@@ -187,6 +188,7 @@
                         np_conditions_list = np.expand_dims(np_conditions_list, axis=0)
                     
                         return np_conditions_list
+
 
 
                     ##################################################
