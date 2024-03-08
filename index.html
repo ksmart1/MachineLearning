@@ -34,6 +34,9 @@
  <table>
  
   <tr>
+      <td> Folds </td>
+     <td> <input type="text" style="border:3px solid #F7730E;" value="3" id="numfolds"/> </td>
+      
      <td> Orientation (left/right) </td>
      <td> <input type="text" style="border:3px solid #F7730E;" value="0" id="testInput1"/> </td>
 
@@ -141,9 +144,10 @@
                     ######################################################
 
                     def predict(test_x):
+                        num_folds = int(Element('numfolds').element.value)
                     
                         distances = [euclidean_distance(test_x, x) for x in vic_conditions_train_np]
-                        k = 15
+                        k = num_folds
                         k_neighbor_indices = np.argsort(distances)[:k]
                         selected_imgs_to_avg = [images_np_train[i].reshape((200, 350, 3)) for i in k_neighbor_indices]
                     
