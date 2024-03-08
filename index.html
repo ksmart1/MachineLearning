@@ -143,7 +143,7 @@
                     def predict(test_x):
                     
                         distances = [euclidean_distance(test_x, x) for x in vic_conditions_train_np]
-                        k = 3
+                        k = 10
                         k_neighbor_indices = np.argsort(distances)[:k]
                         selected_imgs_to_avg = [images_np_train[i].reshape((3, 350, 200)) for i in k_neighbor_indices]
                     
