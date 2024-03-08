@@ -40,7 +40,7 @@
      <td> Orientation (left/right) </td>
      <td> <input type="text" style="border:3px solid #F7730E;" value="0" id="testInput1"/> </td>
 
-       <td> Color (0-15) </td>
+       <td> Color</td>
      <td>   <input type="text" style="border:3px solid #F7730E;" value="0" id="testInput2"/> </td>
 
        <td> Vehicle Type (car, truck, van) </td>
@@ -170,6 +170,8 @@
                         
                         # Dictionary for encoding categorical inputs
                         orientation_map = {'left': 0, 'right': 1}
+                        color_map = {'red': 0, 'white': 1, 'blue': 2, 'green': 3, 'silver': 4, 'gray': 5, 'tan': 6, 'burgandy': 7, 'light blue': 8,
+                                     'purple': 9, 'orange': 10, 'yellow': 11, 'gold': 12, 'auburn': 13, 'brown': 14, 'black': 15}
                         vehicle_map = {'car': 0, 'truck': 1, 'van': 2}
                         configuration_map = {'2-door': 0, '4-door': 1, 'convertible': 2}
                         wheel_size_map = {'small': 0, 'average': 1, 'above average': 2}
@@ -178,7 +180,7 @@
                     
                         # Processing user input
                         c1 = orientation_map.get(Element('testInput1').element.value.lower(), 0)
-                        c2 = float(Element('testInput2').element.value)  
+                        c2 = color_map.get(Element('testInput2').element.value.lower(), 0)  
                         c3 = vehicle_map.get(Element('testInput3').element.value.lower(), 0)
                         c4 = configuration_map.get(Element('testInput4').element.value.lower(), 0)
                         c5 = wheel_size_map.get(Element('testInput5').element.value.lower(), 0)
