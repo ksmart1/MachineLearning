@@ -131,7 +131,7 @@
                     
                     for i in range(3,9):
                         url_variable = globals()["url" + str(i)]
-                        df_chunk = pd.read_csv(open_url(url_variable), header=none)
+                        df_chunk = pd.read_csv(open_url(url_variable))
                         image_datasets.append(df_chunk)
 
                     images_np_train = pd.concat(image_datasets)
