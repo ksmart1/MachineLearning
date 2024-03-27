@@ -38,10 +38,10 @@
      <td> <input type="text" style="border:3px solid #F7730E;" value="3" id="numfolds"/> </td>
       
      <td> Orientation (left/right) </td>
-     <td> <input type="text" style="border:3px solid #F7730E;" value="0" id="testInput1"/> </td>
+     <td> <input type="text" style="border:3px solid #F7730E;" value="right" id="testInput1"/> </td>
 
        <td> Color</td>
-     <td>   <input type="text" style="border:3px solid #F7730E;" value="0" id="testInput2"/> </td>
+     <td>   <input type="text" style="border:3px solid #F7730E;" value="blue" id="testInput2"/> </td>
 
        <td> Vehicle Type (car, truck, van) </td>
      <td>  <input type="text" style="border:3px solid #F7730E;" value="van" id="testInput3"/> </td>
@@ -108,32 +108,35 @@
                     ###########################################
 
 
-                    url1 = "https://raw.githubusercontent.com/ksmart1/MachineLearning/main/vic_ids_train.csv"
+                    url1 = "https://ksmart1.github.io/MachineLearning/vic_ids_train.csv"
                     vic_ids_train = pd.read_csv(open_url(url1))
                     vic_ids_train_np = vic_ids_train.to_numpy()
+                    vic_ids_train_np = vic_ids_train_np[1:, 1:]
 
-                    url2 = "https://raw.githubusercontent.com/ksmart1/MachineLearning/main/vic_conditions_train.csv"
+                    url2 = "https://ksmart1.github.io/MachineLearning/vic_conditions_train.csv"
                     vic_conditions_train = pd.read_csv(open_url(url2))
                     vic_conditions_train_np = vic_conditions_train.to_numpy()
+                    vic_conditions_train_np = vic_conditions_train_np[1:, 1:]
 
                     #########################################################################################################
 
-                    url3 = "https://raw.githubusercontent.com/ksmart1/MachineLearning/main/images_dataset_chunk_1.csv"
-                    url4 = "https://raw.githubusercontent.com/ksmart1/MachineLearning/main/images_dataset_chunk_2.csv"
-                    url5 = "https://raw.githubusercontent.com/ksmart1/MachineLearning/main/images_dataset_chunk_3.csv"
-                    url6 = "https://raw.githubusercontent.com/ksmart1/MachineLearning/main/images_dataset_chunk_4.csv"
-                    url7 = "https://raw.githubusercontent.com/ksmart1/MachineLearning/main/images_dataset_chunk_5.csv"
-                    url8 = "https://raw.githubusercontent.com/ksmart1/MachineLearning/main/images_dataset_chunk_6.csv"
+                    url3 = "https://ksmart1.github.io/MachineLearning/images_dataset_chunk_1.csv"
+                    url4 = "https://ksmart1.github.io/MachineLearning/images_dataset_chunk_2.csv"
+                    url5 = "https://ksmart1.github.io/MachineLearning/images_dataset_chunk_3.csv"
+                    url6 = "https://ksmart1.github.io/MachineLearning/images_dataset_chunk_4.csv"
+                    url7 = "https://ksmart1.github.io/MachineLearning/images_dataset_chunk_5.csv"
+                    url8 = "https://ksmart1.github.io/MachineLearning/images_dataset_chunk_6.csv"
 
                     image_datasets = []
                     
                     for i in range(3,9):
                         url_variable = globals()["url" + str(i)]
-                        df_chunk = pd.read_csv(open_url(url_variable))
+                        df_chunk = pd.read_csv(open_url(url_variable), header=none)
                         image_datasets.append(df_chunk)
 
                     images_np_train = pd.concat(image_datasets)
                     images_np_train = images_np_train.to_numpy()
+                    images_np_train = images_np_train[1:, 1:]
             
                     ######################################################
 
@@ -167,16 +170,6 @@
                         # Extract min and max values from scaling_params
                         min_values = scaling_params['min_values']
                         max_values = scaling_params['max_values']
-                        
-                        # Dictionary for encoding categorical inputs
-                        orientation_map = {'left': 0, 'right': 1}
-                        color_map = {'red': 0, 'white': 1, 'blue': 2, 'green': 3, 'silver': 4, 'gray': 5, 'tan': 6, 'burgandy': 7, 'light blue': 8,
-                                     'purple': 9, 'orange': 10, 'yellow': 11, 'gold': 12, 'auburn': 13, 'brown': 14, 'black': 15}
-                        vehicle_map = {'car': 0, 'truck': 1, 'van': 2}
-                        configuration_map = {'2-door': 0, '4-door': 1, 'convertible': 2}
-                        wheel_size_map = {'small': 0, 'average': 1, 'above average': 2}
-                        ride_height_map = {'lowered': 0, 'stock': 1, 'lifted': 2}
-                        windows_map = {'none': 0, 'tint': 1}
                     
                         # Processing user input
                         c1 = orientation_map.get(Element('testInput1').element.value.lower(), 0)
@@ -186,6 +179,16 @@
                         c5 = wheel_size_map.get(Element('testInput5').element.value.lower(), 0)
                         c6 = ride_height_map.get(Element('testInput6').element.value.lower(), 0)
                         c7 = windows_map.get(Element('testInput7').element.value.lower(), 0)
+
+                        # Dictionary for encoding categorical inputs
+                        orientation_map = {'left': 0, 'right': 1}
+                        color_map = {'red': 0, 'white': 1, 'blue': 2, 'green': 3, 'silver': 4, 'gray': 5, 'tan': 6, 'burgandy': 7, 'light blue': 8,
+                                     'purple': 9, 'orange': 10, 'yellow': 11, 'gold': 12, 'auburn': 13, 'brown': 14, 'black': 15}
+                        vehicle_map = {'car': 0, 'truck': 1, 'van': 2}
+                        configuration_map = {'2-door': 0, '4-door': 1, 'sliding': 2, 'convertible': 3}
+                        wheel_size_map = {'small': 0, 'average': 1, 'above average': 2}
+                        ride_height_map = {'lowered': 0, 'stock': 1, 'lifted': 2}
+                        windows_map = {'none': 0, 'tint': 1}
                     
                         # Scale the numerical inputs using the loaded scaler parameters
                         c2 = (c2 - min_values[1]) / (max_values[1] - min_values[1])
