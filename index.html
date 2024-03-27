@@ -170,15 +170,6 @@
                         # Extract min and max values from scaling_params
                         min_values = scaling_params['min_values']
                         max_values = scaling_params['max_values']
-                    
-                        # Processing user input
-                        c1 = orientation_map.get(Element('testInput1').element.value.lower(), 0)
-                        c2 = color_map.get(Element('testInput2').element.value.lower(), 0)  
-                        c3 = vehicle_map.get(Element('testInput3').element.value.lower(), 0)
-                        c4 = configuration_map.get(Element('testInput4').element.value.lower(), 0)
-                        c5 = wheel_size_map.get(Element('testInput5').element.value.lower(), 0)
-                        c6 = ride_height_map.get(Element('testInput6').element.value.lower(), 0)
-                        c7 = windows_map.get(Element('testInput7').element.value.lower(), 0)
 
                         # Dictionary for encoding categorical inputs
                         orientation_map = {'left': 0, 'right': 1}
@@ -189,6 +180,15 @@
                         wheel_size_map = {'small': 0, 'average': 1, 'above average': 2}
                         ride_height_map = {'lowered': 0, 'stock': 1, 'lifted': 2}
                         windows_map = {'none': 0, 'tint': 1}
+                    
+                        # Processing user input
+                        c1 = orientation_map.get(Element('testInput1').element.value.lower(), 0)
+                        c2 = color_map.get(Element('testInput2').element.value.lower(), 0)  
+                        c3 = vehicle_map.get(Element('testInput3').element.value.lower(), 0)
+                        c4 = configuration_map.get(Element('testInput4').element.value.lower(), 0)
+                        c5 = wheel_size_map.get(Element('testInput5').element.value.lower(), 0)
+                        c6 = ride_height_map.get(Element('testInput6').element.value.lower(), 0)
+                        c7 = windows_map.get(Element('testInput7').element.value.lower(), 0)
                     
                         # Scale the numerical inputs using the loaded scaler parameters
                         c2 = (c2 - min_values[1]) / (max_values[1] - min_values[1])
