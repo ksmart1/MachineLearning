@@ -102,7 +102,6 @@
                     from pyodide.http import open_url
                     from js import console
                     from mpl_toolkits.axes_grid1 import make_axes_locatable
-                    import json
 
                  
                     ###########################################
@@ -158,15 +157,6 @@
                     ##################################################
                     
                     def get_np_conditions_vector():
-                        # Load scaler parameters from JSON file
-                        scaler_params_url = "https://raw.githubusercontent.com/ksmart1/MachineLearning/main/scaling_params.json"
-                        scaling_params_response = open_url(scaler_params_url)
-                        scaling_params_data = scaling_params_response.read()
-                        scaling_params = json.loads(scaling_params_data)
-                    
-                        # Extract min and max values from scaling_params
-                        min_values = scaling_params['min_values']
-                        max_values = scaling_params['max_values']
 
                         # Dictionary for encoding categorical inputs
                         orientation_map = {'left': 0, 'right': 1}
@@ -186,9 +176,6 @@
                         c5 = wheel_size_map.get(Element('testInput5').element.value.lower(), 0)
                         c6 = ride_height_map.get(Element('testInput6').element.value.lower(), 0)
                         c7 = windows_map.get(Element('testInput7').element.value.lower(), 0)
-                    
-                        # Scale the numerical inputs using the loaded scaler parameters
-                        c2 = (c2 - min_values[1]) / (max_values[1] - min_values[1])
                     
                         conditions_list = [c1, c2, c3, c4, c5, c6, c7]
                         np_conditions_list = np.array(conditions_list)
