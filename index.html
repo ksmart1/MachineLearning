@@ -111,12 +111,10 @@
                     url1 = "https://ksmart1.github.io/MachineLearning/vic_ids_train.csv"
                     vic_ids_train = pd.read_csv(open_url(url1))
                     vic_ids_train_np = vic_ids_train.to_numpy()
-                    vic_ids_train_np = vic_ids_train_np[1:, 1:]
 
                     url2 = "https://ksmart1.github.io/MachineLearning/vic_conditions_train.csv"
                     vic_conditions_train = pd.read_csv(open_url(url2))
                     vic_conditions_train_np = vic_conditions_train.to_numpy()
-                    vic_conditions_train_np = vic_conditions_train_np[1:, 1:]
 
                     #########################################################################################################
 
@@ -136,7 +134,6 @@
 
                     images_np_train = pd.concat(image_datasets)
                     images_np_train = images_np_train.to_numpy()
-                    images_np_train = images_np_train[1:, 1:]
             
                     ######################################################
 
